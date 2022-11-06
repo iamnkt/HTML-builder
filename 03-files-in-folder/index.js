@@ -3,8 +3,6 @@ const fs = require('fs');
 const { readdir } = require('fs');
 
 const actualPath = path.join(__dirname, 'secret-folder');
-console.log(actualPath);
-
 async function showInf() {
   try {
     const files = await fs.promises.readdir(actualPath);
@@ -19,5 +17,4 @@ async function showInf() {
       console.error(err);
     }
 };
-
 showInf();
