@@ -5,7 +5,7 @@ const { stdin: input, stdout } = process;
 
 const output = fs.createWriteStream(path.join(__dirname, 'text.txt'));
 const rl = readline.createInterface({input, output});
-stdout.write('Введите текст:\n');
+stdout.write('please, type the text:\n');
 rl.on('SIGINT', () => {
   rl.close();
 });
@@ -15,4 +15,4 @@ rl.on('line', (input) => {
   }
   output.write(`${input}\n`);
 });
-process.on('exit', () => stdout.write('Ввод завершен!'));
+process.on('exit', () => stdout.write('completed!'));
