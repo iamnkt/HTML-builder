@@ -13,7 +13,7 @@ async function create() {
   }
 }
 
-async function copy() {
+async function copyDir() {
   try {
     const files = await fs.promises.readdir(input);
     const output = path.join(__dirname, 'files-copy');
@@ -31,4 +31,4 @@ async function copy() {
 }
 
 create();
-copy();
+copyDir();
