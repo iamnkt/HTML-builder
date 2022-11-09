@@ -8,18 +8,18 @@ const rl = readline.createInterface({input, output});
 stdout.write('please, type the text:\n');
 rl.on('line', (input) => {
   if (input === 'exit') {
-    console.log('completed!')
+    console.log('completed!');
     return rl.close();
   }
   output.write(`${input}\n`);
 });
 
 rl.on('SIGINT', () => {
-  process.emit('SIGINT')
+  process.emit('SIGINT');
   rl.close();
 });
 
 process.on('SIGINT', () => {
-  console.log('completed!')
+  console.log('completed!');
   process.exit();
 });

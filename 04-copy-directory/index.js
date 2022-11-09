@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const { readdir, copyFile, exists } = require('fs');
+const { readdir, copyFile, exists, rm } = require('fs');
 
 const input = path.join(__dirname, 'files');
 
@@ -10,6 +10,19 @@ async function create() {
     console.log('directory was created!');
   } catch (e) {
     console.error('directory already exists!');
+  }
+}
+
+async function cleanDir() {
+  try {
+    const output = path.join(__dirname, 'files-copy');
+    const files = await fs.promises.readdir(output);
+    for (const file of files) {
+      await fs.promises.rm(path.join(__dirname, 'files-copy', file), { force: true });
+      console.log(`${file} was removed`);
+    }
+  } catch(e) {
+    console.error(e.message);
   }
 }
 
@@ -30,5 +43,10 @@ async function copyDir() {
   }
 }
 
+async function cleanAndCopy() {
+  await cleanDir();
+  await copyDir();
+}
+
 create();
-copyDir();
+cleanAndCopy();
