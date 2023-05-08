@@ -4,8 +4,8 @@ const { readdir } = require('fs');
 
 async function createProjectDist() {
   try {
-    const createMainDir = await fs.promises.mkdir('./06-build-page/project-dist');
-    const createAssetsDir = await fs.promises.mkdir('./06-build-page/project-dist/assets');
+    const createMainDir = await fs.promises.mkdir('./project-dist');
+    const createAssetsDir = await fs.promises.mkdir('./project-dist/assets');
     console.log('directory was created!');
   } catch (e) {
     console.error('directory already exists!');
@@ -16,7 +16,7 @@ async function createIndexHtml() {
   try {
     let template = await fs.promises.readFile(path.join(__dirname, 'template.html'),  'utf-8');
     const components = await fs.promises.readdir(path.join(__dirname, 'components'));
-    for (let i = 0; i <= components.length; i++) {
+    for (let i = 0; i < components.length; i++) {
       let data = await fs.promises.readFile(path.join(__dirname, 'components', components[i]),  'utf-8');
       let component = `{{${components[i].split('.')[0]}}}`;
       template = template.replace(`${component}`, `${data}`);
@@ -47,7 +47,6 @@ async function mergeStyles() {
 async function copyAssets() {
   try {
     const assets = await fs.promises.readdir(path.join(__dirname, 'assets'), { withFileTypes: true });
-    // const output = path.join(__dirname, 'project-dist/assets');
     for (const asset of assets) {
       if (asset.isDirectory()) {
         await fs.promises.mkdir(`${path.join(__dirname, 'project-dist/assets')}/${asset.name}`, { recursive: true });
