@@ -6,7 +6,7 @@ const input = path.join(__dirname, 'files');
 
 async function create() {
   try {
-    const createDir = await fs.promises.mkdir('./04-copy-directory/files-copy');
+    const createDir = await fs.promises.mkdir('./files-copy');
     console.log('directory was created!');
   } catch (e) {
     console.error('directory already exists!');

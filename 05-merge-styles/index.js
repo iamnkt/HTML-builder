@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { readdir } = require('fs');
+
 const input = path.join(__dirname, 'styles');
 const output = path.join(__dirname, 'project-dist', 'bundle.css');
 

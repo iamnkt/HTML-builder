@@ -4,11 +4,11 @@ const { readdir } = require('fs');
 
 async function createProjectDist() {
   try {
-    const createMainDir = await fs.promises.mkdir('./project-dist');
-    const createAssetsDir = await fs.promises.mkdir('./project-dist/assets');
+    const mainDir = await fs.promises.mkdir('./06-build-page/project-dist');
+    const assetsDir = await fs.promises.mkdir('./06-build-page/project-dist/assets');
     console.log('directory was created!');
   } catch (e) {
-    console.error('directory already exists!');
+    console.error(e.message);
   }
 }
 
