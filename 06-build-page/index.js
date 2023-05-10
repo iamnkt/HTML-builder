@@ -29,13 +29,13 @@ async function createIndexHtml() {
 
 async function mergeStyles() {
   try {
+    await fs.promises.writeFile(path.join(__dirname, 'project-dist', 'style.css'), '');
     const files = await fs.promises.readdir(path.join(__dirname, 'styles'));
     for (const file of files) {
       const attr = await fs.promises.stat(path.join(path.join(__dirname, 'styles'), file));
       const ext = path.extname(path.join(path.join(__dirname, 'styles'), file));
       if (attr.isFile() && ext === '.css') {
         let data = await fs.promises.readFile(path.join(__dirname, 'styles', file),  'utf-8');
-        await fs.promises.writeFile(path.join(__dirname, 'project-dist', 'style.css'), '');
         await fs.promises.appendFile(path.join(__dirname, 'project-dist', 'style.css'), `${data}\n`);
       }
     }
